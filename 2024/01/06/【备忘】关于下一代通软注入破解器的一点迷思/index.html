@@ -69,8 +69,12 @@
 <h1 id="一、概论"><a href="#一、概论" class="headerlink" title="一、概论"></a>一、概论</h1><p>模仿通软的服务加载逻辑，在运行时添加破解相关服务，以避免直接对通软程序代码进行修改带来的问题。</p>
 <h1 id="二、具体实现"><a href="#二、具体实现" class="headerlink" title="二、具体实现"></a>二、具体实现</h1><ol>
 <li>利用 <code>System.Reflection</code> 加载相关注入破解类；</li>
-<li>获得相关插件上下文，添加：<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> GS.Unitive.Framework.Core;</span><br><span class="line"><span class="keyword">using</span> System.Reflection;</span><br><span class="line"></span><br><span class="line">Assembly assembly = ...;</span><br><span class="line">Type t = assembly.GetType(<span class="string">&quot;...&quot;</span>);</span><br><span class="line"><span class="built_in">object</span> service = Activator.CreateInstance(t);</span><br><span class="line"></span><br><span class="line">IAddon addon = AddonRuntime.GetInstalledAddons().FirstOrDefault((IAddon ss) =&gt; ss.SymbolicName == <span class="string">&quot;Addon&quot;</span>);</span><br><span class="line">addon.Context.AddService(service, t);</span><br></pre></td></tr></table></figure></li>
+<li>获得相关插件上下文，添加：</li>
 </ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> GS.Unitive.Framework.Core;</span><br><span class="line"><span class="keyword">using</span> System.Reflection;</span><br><span class="line"></span><br><span class="line">Assembly assembly = ...;</span><br><span class="line">Type t = assembly.GetType(<span class="string">&quot;...&quot;</span>);</span><br><span class="line"><span class="built_in">object</span> service = Activator.CreateInstance(t);</span><br><span class="line"></span><br><span class="line">IAddon addon = AddonRuntime.GetInstalledAddons().FirstOrDefault((IAddon ss) =&gt; ss.SymbolicName == <span class="string">&quot;Addon&quot;</span>);</span><br><span class="line">addon.Context.AddService(service, t);</span><br></pre></td></tr></table></figure>
+
+<p>或者说，可以通过提前加载破解插件，达到覆盖的效果？</p>
+<p>例如：将破解插件的 <code>StartLevel</code> 调至 <code>0</code>？</p>
 
       
     </div>
@@ -145,15 +149,15 @@
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/Net/">.Net</a><small>2</small></li>
+    <li><a href="/tags/Net/">.Net</a><small>3</small></li>
   
-    <li><a href="/tags/C/">C#</a><small>2</small></li>
+    <li><a href="/tags/C/">C#</a><small>3</small></li>
   
     <li><a href="/tags/%E6%97%A5%E5%B8%B8/">日常</a><small>1</small></li>
   
     <li><a href="/tags/%E7%A0%B4%E8%A7%A3/">破解</a><small>3</small></li>
   
-    <li><a href="/tags/%E9%80%9A%E8%BD%AF%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6/">通软系列软件</a><small>3</small></li>
+    <li><a href="/tags/%E9%80%9A%E8%BD%AF%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6/">通软系列软件</a><small>4</small></li>
   
   </ul>
 </div>
